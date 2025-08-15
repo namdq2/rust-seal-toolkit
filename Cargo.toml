@@ -1,0 +1,39 @@
+[package]
+name = "seal-rust-demo"
+version = "0.1.0"
+edition = "2021"
+authors = ["Mysten Labs <build@mystenlabs.com>"]
+license = "Apache-2.0"
+description = "Rust demo project showing how to use Seal for encryption and decryption"
+
+[[bin]]
+name = "seal-demo"
+path = "src/main.rs"
+
+[dependencies]
+# Core Seal crypto library
+crypto = { git = "https://github.com/MystenLabs/seal.git", package = "crypto" }
+
+# Fastcrypto dependencies (matching workspace versions)
+fastcrypto = { git = "https://github.com/MystenLabs/fastcrypto", rev = "69d496c71fb37e3d22fe85e5bbfd4256d61422b9", features = ["aes"] }
+
+# Sui dependencies
+sui_types = { git = "https://github.com/mystenlabs/sui", rev = "42ba6c0", package = "sui-types"}
+
+# Serialization and encoding
+bcs = "0.1.6"
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = "1.0.138"
+hex = "0.4"
+
+# CLI and utilities
+clap = { version = "4.5.40", features = ["derive"] }
+anyhow = "1.0"
+rand = "0.8.5"
+tokio = { version = "1.0", features = ["full"] }
+
+# Tracing
+tracing = "0.1.37"
+tracing-subscriber = "0.3"
+
+# File operations
