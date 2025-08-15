@@ -3,7 +3,7 @@
 A comprehensive Rust toolkit demonstrating the integration and usage of **Seal** - a decentralized secrets management system built with Identity-Based Encryption (IBE) and threshold cryptography. This toolkit provides practical examples and production-ready patterns for secure, decentralized encryption in Rust applications.
 
 [![Rust](https://img.shields.io/badge/rust-1.87%2B-orange.svg)](https://www.rust-lang.org)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Build Status](https://img.shields.io/github/workflow/status/namdq2/rust-seal-toolkit/CI)](https://github.com/namdq2/rust-seal-toolkit/actions)
 
 ## 🎯 Features
@@ -357,7 +357,7 @@ We welcome contributions! Please:
 
 ## 📄 License
 
-Licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+Licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## 🆘 Support
 
