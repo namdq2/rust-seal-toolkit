@@ -1,14 +1,19 @@
-# Seal Rust Integration Demo
+# Rust Seal Toolkit
 
-This demo project shows how to integrate **Seal** (Decentralized Secrets Management) into your Rust applications. Seal uses Identity-Based Encryption (IBE) and threshold cryptography to provide secure, decentralized encryption services.
+A comprehensive Rust toolkit demonstrating the integration and usage of **Seal** - a decentralized secrets management system built with Identity-Based Encryption (IBE) and threshold cryptography. This toolkit provides practical examples and production-ready patterns for secure, decentralized encryption in Rust applications.
 
-## 🎯 What You'll Learn
+[![Rust](https://img.shields.io/badge/rust-1.87%2B-orange.svg)](https://www.rust-lang.org)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Build Status](https://img.shields.io/github/workflow/status/namdq2/rust-seal-toolkit/CI)](https://github.com/namdq2/rust-seal-toolkit/actions)
 
-- How to use Seal's native Rust API for encryption/decryption
-- Key management with IBE (Identity-Based Encryption)
-- Threshold encryption with multiple key servers
-- File encryption and batch processing
-- Best practices for integrating Seal into production applications
+## 🎯 Features
+
+- **Identity-Based Encryption (IBE)**: Encrypt data using identities as public keys without prior key exchange
+- **Threshold Cryptography**: Multi-server encryption requiring T-out-of-N servers for decryption
+- **File Operations**: Secure file encryption and batch processing capabilities
+- **Key Management**: Comprehensive key generation, extraction, and verification
+- **Production Ready**: Error handling, testing, and integration patterns
+- **Performance Optimized**: Native Rust implementation with minimal overhead
 
 ## 🏗️ Project Structure
 
@@ -25,43 +30,54 @@ src/
 
 ### Prerequisites
 
-- Rust 1.87+ (as specified in rust-toolchain.toml)
-- Git (to clone the Seal repository)
+- **Rust**: 1.87+ (as specified in rust-toolchain.toml)
+- **Git**: For cloning dependencies
+- **OS**: Linux, macOS, or Windows
 
-### Build and Run
+### Installation
 
-1. **Navigate to the demo directory:**
+1. **Clone the repository:**
    ```bash
-   cd examples/rust-demo
+   git clone git@github.com:namdq2/rust-seal-toolkit.git
+   cd rust-seal-toolkit
    ```
 
 2. **Build the project:**
    ```bash
-   cargo build
+   cargo build --release
    ```
 
-3. **Run the interactive demo:**
+3. **Run tests to verify installation:**
    ```bash
-   cargo run interactive
+   cargo test
    ```
 
-4. **Or run specific demos:**
-   ```bash
-   # Basic encryption examples
-   cargo run basic
-   
-   # Key management demonstrations  
-   cargo run keys
-   
-   # Threshold encryption (3 servers by default)
-   cargo run threshold --servers 5
-   
-   # File encryption operations
-   cargo run files
-   
-   # Run everything
-   cargo run all
-   ```
+### Usage
+
+Run the interactive demo to explore all features:
+
+```bash
+cargo run interactive
+```
+
+Or execute specific demo modules:
+
+```bash
+# Basic encryption examples
+cargo run basic
+
+# Key management demonstrations  
+cargo run keys
+
+# Threshold encryption (3 servers by default)
+cargo run threshold --servers 5
+
+# File encryption operations
+cargo run files
+
+# Run all demos
+cargo run all
+```
 
 ## 📚 Demo Modules
 
@@ -161,13 +177,14 @@ let (encrypted_object, _) = seal_encrypt(
    ```toml
    [dependencies]
    # Core Seal crypto library
-   seal-crypto = { path = "path/to/seal/crates/crypto" }
+   crypto = { git = "https://github.com/MystenLabs/seal.git", package = "crypto" }
    
    # Required dependencies
    fastcrypto = { git = "https://github.com/MystenLabs/fastcrypto", rev = "69d496c71fb37e3d22fe85e5bbfd4256d61422b9", features = ["aes"] }
    sui_types = { git = "https://github.com/mystenlabs/sui", rev = "42ba6c0", package = "sui-types"}
    bcs = "0.1.6"
    rand = "0.8.5"
+   anyhow = "1.0"
    ```
 
 2. **Import Seal components:**
@@ -178,6 +195,8 @@ let (encrypted_object, _) = seal_encrypt(
        ibe::{generate_key_pair, extract},
        create_full_id, ObjectID
    };
+   use std::collections::HashMap;
+   use rand::thread_rng;
    ```
 
 3. **Basic usage pattern:**
@@ -312,35 +331,46 @@ cargo test -- --nocapture
 - ✅ **Minimal Dependencies**: Only essential cryptographic libraries
 - ✅ **Memory Safety**: Rust's memory safety guarantees
 
-## 🔗 Next Steps
+## 🚀 Next Steps
 
-After running these demos, you can:
+1. **Explore the Examples**: Study the source code to understand implementation patterns
+2. **Customize for Your Use Case**: Modify examples to match your specific requirements  
+3. **Integration**: Add Seal to your existing Rust applications
+4. **Production Deployment**: Set up key servers and deploy on Sui blockchain
+5. **Community**: Join the Seal community and contribute improvements
 
-1. **Study the source code** to understand implementation details
-2. **Modify the examples** to match your use case
-3. **Integrate Seal** into your existing Rust applications
-4. **Set up real key servers** using the `key-server` crate
-5. **Deploy on Sui blockchain** using the Move contracts in `move/`
+## 📚 Documentation & Resources
 
-## 📖 Additional Resources
-
-- **Seal Repository**: https://github.com/MystenLabs/seal
-- **Sui Documentation**: https://docs.sui.io
-- **IBE Cryptography**: [Boneh-Franklin IBE](https://crypto.stanford.edu/~dabo/papers/bfibe.pdf)
-- **BLS Signatures**: [BLS12-381 Curve](https://tools.ietf.org/html/draft-irtf-cfrg-bls-signature-04)
+- **[Seal Repository](https://github.com/MystenLabs/seal)** - Main Seal project
+- **[Sui Documentation](https://docs.sui.io)** - Sui blockchain platform
+- **[IBE Paper](https://crypto.stanford.edu/~dabo/papers/bfibe.pdf)** - Boneh-Franklin IBE cryptography
+- **[BLS Signatures](https://tools.ietf.org/html/draft-irtf-cfrg-bls-signature-04)** - BLS12-381 curve specification
 
 ## 🤝 Contributing
 
-If you find issues or have suggestions for improving these demos:
+We welcome contributions! Please:
 
-1. Check existing issues in the Seal repository
-2. Create detailed bug reports or feature requests
-3. Submit pull requests with improvements
+1. 🔍 Check [existing issues](https://github.com/namdq2/rust-seal-toolkit/issues)
+2. 🐛 Report bugs with detailed reproduction steps
+3. 💡 Submit feature requests and improvements
+4. 🔧 Create pull requests following our coding standards
 
 ## 📄 License
 
-This demo is licensed under the Apache License 2.0, same as the Seal project.
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+
+## 🆘 Support
+
+- **Issues**: [GitHub Issues](https://github.com/namdq2/rust-seal-toolkit/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/namdq2/rust-seal-toolkit/discussions)
+- **Security**: Report security issues privately via email
 
 ---
 
-**Happy encrypting with Seal! 🦭🔒**
+<div align="center">
+
+**Secure your data with Rust and Seal** 🦭🔒
+
+[⭐ Star on GitHub](https://github.com/namdq2/rust-seal-toolkit) | [📖 Read the Docs](https://docs.sui.io) | [🐛 Report Issue](https://github.com/namdq2/rust-seal-toolkit/issues)
+
+</div>
